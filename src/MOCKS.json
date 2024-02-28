@@ -1,0 +1,20 @@
+{
+  "data": {
+    "session": {
+      "id": "65da766487105697f28888b9",
+      "createdById": "6fdcfc8d-9cfc-413c-b767-741d72564af5",
+      "messages": [
+        {
+          "value": "I'm interested in learning more about co-creation",
+          "type": "User",
+          "status": "Complete"
+        },
+        {
+          "value": "Co-creation is a central theme in the content produced by BRAVECORE, specifically highlighted in both their blog and book offerings. The blog post titled \\\"Better, Together: The Power of Co-Creative Leadership\\\" delves into the significance of co-creative leadership, emphasizing the importance of empowering employees, fostering a people-centric work culture, and encouraging collaboration and innovation. Key strategies include guiding leaders to shape culture, identifying co-creators within the organization, and creating space for collaborative efforts. \n\nThe book \\\"Brave Together\\\" further explores the concept of co-creation, particularly in the chapters \\\"What Does It Mean To Be Brave Together?\\\" and \\\"The Great Realization\\\". These chapters discuss the transformation from individualistic pursuits to a focus on collaborative innovation, the power of co-creation in solving modern work culture struggles, and the potential for co-creation to lead to significant business growth and innovation.\n\nOverall, both the blog and book highlight the transformative power of co-creative leadership and the impact it can have on organizational culture, employee empowerment, and business innovation.",
+          "type": "AI",
+          "status": "Complete"
+        }
+      ]
+    }
+  }
+}

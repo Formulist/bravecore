@@ -1,0 +1,26 @@
+mutation SubmitMessage(
+  $anonomousUserId: String!
+  $sessionId: String!
+  $message: String!
+) {
+  submitMessage(
+    anonomousUserId: $anonomousUserId
+    sessionId: $sessionId
+    message: $message
+  ) {
+    id
+    createdAtISO
+    createdById
+
+    isUserAnonymous
+    updatedAtISO
+    messages {
+      value
+      createdAtISO
+      id
+      status
+      type
+    }
+    programId
+  }
+}

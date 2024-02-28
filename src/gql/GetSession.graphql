@@ -1,0 +1,20 @@
+query Session($sessionId: String!) {
+  session(sessionId: $sessionId) {
+    id
+    createdById
+    messages {
+      value
+      references {
+        mediaItemTitle
+        mediaItemDescription
+        programId
+        mediaItemId
+        mediaChannelId
+        mediaChannel
+        mediaSourceUrl
+      }
+      type
+      status
+    }
+  }
+}
