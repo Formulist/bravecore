@@ -125,8 +125,6 @@ export enum FileType {
 export type Mutation = {
   __typename?: 'Mutation';
   createProgramChatSession: ChatSession;
-  formulaCreateUberStory: Story;
-  formulaCreateUberVideo: Story;
   login?: Maybe<AuthResult>;
   registerUser: AuthResult;
   submitMessage: ChatSession;
@@ -135,20 +133,6 @@ export type Mutation = {
 
 export type MutationCreateProgramChatSessionArgs = {
   programId: Scalars['String']['input'];
-};
-
-
-export type MutationFormulaCreateUberStoryArgs = {
-  narratorKey: NarratorKey;
-  scenes: Array<SceneInput>;
-  title: Scalars['String']['input'];
-};
-
-
-export type MutationFormulaCreateUberVideoArgs = {
-  narratorKey: NarratorKey;
-  scenes: Array<SceneInput>;
-  title: Scalars['String']['input'];
 };
 
 
@@ -171,24 +155,6 @@ export type MutationSubmitMessageArgs = {
   message: Scalars['String']['input'];
   sessionId: Scalars['String']['input'];
 };
-
-export type Narration = {
-  __typename?: 'Narration';
-  audioUrl: Scalars['String']['output'];
-  id: Scalars['String']['output'];
-};
-
-/** Narrator of a story */
-export type Narrator = {
-  __typename?: 'Narrator';
-  key: NarratorKey;
-};
-
-export enum NarratorKey {
-  CrisRock = 'CrisRock',
-  JerrySeinfeld = 'JerrySeinfeld',
-  SamuelLJackson = 'SamuelLJackson'
-}
 
 export type PaginatedBlogPosts = {
   __typename?: 'PaginatedBlogPosts';
@@ -273,7 +239,6 @@ export type Query = {
   me: User;
   program: Program;
   session: ChatSession;
-  story: Story;
   user?: Maybe<User>;
   users: Array<User>;
   validateToken: User;
@@ -287,11 +252,6 @@ export type QueryProgramArgs = {
 
 export type QuerySessionArgs = {
   sessionId: Scalars['String']['input'];
-};
-
-
-export type QueryStoryArgs = {
-  storyId: Scalars['String']['input'];
 };
 
 
@@ -317,37 +277,6 @@ export type RecordingMetadata = {
   speakerConfidance?: Maybe<Scalars['Float']['output']>;
   start: Scalars['Float']['output'];
 };
-
-/** A single sequence of events that is elaborated on the description and picture */
-export type Scene = {
-  __typename?: 'Scene';
-  imageUrl: Scalars['String']['output'];
-  narration: Narration;
-  narrationId: Scalars['String']['output'];
-  prompt: Scalars['String']['output'];
-  script: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-};
-
-export type SceneInput = {
-  imageUrl: Scalars['String']['input'];
-  prompt: Scalars['String']['input'];
-};
-
-export type Story = {
-  __typename?: 'Story';
-  id: Scalars['String']['output'];
-  narrator: Narrator;
-  scenes: Array<Scene>;
-  status: StoryStatus;
-  videoUrl?: Maybe<Scalars['String']['output']>;
-};
-
-export enum StoryStatus {
-  Complete = 'COMPLETE',
-  Failed = 'FAILED',
-  InProgress = 'IN_PROGRESS'
-}
 
 export type Transcript = {
   __typename?: 'Transcript';

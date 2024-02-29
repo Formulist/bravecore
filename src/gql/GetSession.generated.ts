@@ -1,4 +1,4 @@
-import * as Types from '../../packages/src/types';
+import * as Types from '../types';
 
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type SessionQueryVariables = Types.Exact<{

@@ -7,16 +7,16 @@ const config: CodegenConfig = {
     "src/types.ts": {
       plugins: ["typescript"],
       presetConfig: {
-        baseTypesPath: "types.ts",
+        baseTypesPath: "/src/types.ts",
         extension: ".ts",
       },
     },
-    "packages/": {
+    src: {
       preset: "near-operation-file",
       plugins: ["typescript-operations", "typed-document-node"],
       presetConfig: {
         extension: ".generated.ts",
-        baseTypesPath: "src/types.ts",
+        baseTypesPath: "/types.ts",
       },
     },
   },
