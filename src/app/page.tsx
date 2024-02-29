@@ -26,7 +26,6 @@ export default function Home() {
       <Content>
         {messages.map((message) => {
           const isAI = message.type === "AI";
-          console.log("is AI");
           return (
             <Row key={message.value} isAgent={isAI}>
               <ChatMessage value={message.value} type={message.type} />
