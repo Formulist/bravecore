@@ -8,14 +8,12 @@ mutation SubmitMessage(
     sessionId: $sessionId
     message: $message
   ) {
-    id
     createdAtISO
     createdById
-
     isUserAnonymous
     updatedAtISO
     messages {
-      value
+      text
       createdAtISO
       id
       status

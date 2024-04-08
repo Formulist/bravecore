@@ -3,7 +3,7 @@ query Session($sessionId: String!) {
     id
     createdById
     messages {
-      value
+      text
       references {
         mediaItemTitle
         mediaItemDescription

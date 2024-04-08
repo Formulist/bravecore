@@ -24,16 +24,23 @@ export default function Home() {
   return (
     <Body Header={<Header />}>
       <Content>
-        {messages.map((message) => {
-          const isAI = message.type === "AI";
-          return (
-            <Row key={message.value} isAgent={isAI}>
-              <ChatMessage value={message.value} type={message.type} />
-              <Spacer width={3} />
-              {isAI ? <Agent2 /> : <img src="/photo.png" />}
-            </Row>
-          );
-        })}
+        <ChatBody>
+          {messages.map((message, index) => {
+            const isAI = message.type === "AI";
+            return (
+              <Row
+                key={message.text}
+                isAgent={isAI}
+                isLast={index === messages.length - 1}
+              >
+                <ChatMessage value={message.text} type={message.type} />
+                <Spacer width={3} />
+                {isAI ? <Agent2 /> : <img src="/photo.png" />}
+              </Row>
+            );
+          })}
+        </ChatBody>
+
         <Spacer height="fill" />
         <InputContainer>
           <Input value={draft} onChange={setDraft} onSubmit={handleMessage} />
@@ -44,17 +51,27 @@ export default function Home() {
 }
 
 const Content = styled.div`
-  max-width: 960px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-width: 0;
-  align-self: center;
+  align-items: center;
 `;
 
-const Row = styled.div<{ isAgent: boolean }>`
+const ChatBody = styled.div`
+  max-width: 960px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  align-self: center;
+  overflow: auto;
+`;
+
+const Row = styled.div<{ isAgent: boolean; isLast: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-end;
@@ -70,9 +87,5 @@ const Row = styled.div<{ isAgent: boolean }>`
   }}
 `;
 const InputContainer = styled.div`
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 80%;
 `;
