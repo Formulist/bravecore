@@ -13,7 +13,7 @@ const nextConfig = {
         source: "/api/graphql",
         destination:
           process?.env?.NEXT_PUBLIC_GATEWAY_URL ??
-          "http://localhost:8080/graphql",
+          "https://formulist-gateway.onrender.com/graphql",
       },
     ];
   },

@@ -33,9 +33,19 @@ export default function Home() {
                 isAgent={isAI}
                 isLast={index === messages.length - 1}
               >
+                {isAI ? (
+                  <>
+                    <Agent2 />
+                    <Spacer width={3} />
+                  </>
+                ) : null}
                 <ChatMessage value={message.text} type={message.type} />
-                <Spacer width={3} />
-                {isAI ? <Agent2 /> : <img src="/photo.png" />}
+                {isAI ? null : (
+                  <>
+                    <Spacer width={3} />
+                    <img src="/photo.png" />
+                  </>
+                )}
               </Row>
             );
           })}
@@ -81,7 +91,7 @@ const Row = styled.div<{ isAgent: boolean; isLast: boolean }>`
   ${({ isAgent }) => {
     if (isAgent) {
       return `
-        justify-content: space-between;
+        justify-content: flex-start;
       `;
     }
   }}
