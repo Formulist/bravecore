@@ -13,4 +13,5 @@ const Container = styled.button`
   padding: 0px 16px;
   color: ${colors.text.primary};
   border: 0px solid;
+  cursor: pointer;
 `;
