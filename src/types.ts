@@ -23,6 +23,7 @@ export type AuthResult = {
 export type Blog = {
   __typename?: 'Blog';
   id: Scalars['String']['output'];
+  mediaChannelType: ProgramMediaChannelType;
   postList: PaginatedBlogPosts;
   title: Scalars['String']['output'];
   url: Scalars['String']['output'];
@@ -46,6 +47,7 @@ export type Book = {
   chapters: Array<BookChapter>;
   file: File;
   id: Scalars['String']['output'];
+  mediaChannelType: ProgramMediaChannelType;
   title: Scalars['String']['output'];
 };
 
@@ -85,9 +87,7 @@ export type ChatReference = {
   __typename?: 'ChatReference';
   mediaChannel: ProgramMediaChannelType;
   mediaChannelId: Scalars['String']['output'];
-  mediaItemDescription: Scalars['String']['output'];
   mediaItemId: Scalars['String']['output'];
-  mediaItemTitle: Scalars['String']['output'];
   mediaSourceUrl: Scalars['String']['output'];
   programId: Scalars['String']['output'];
 };
@@ -99,6 +99,7 @@ export type ChatSession = {
   createdById: Scalars['String']['output'];
   id: Scalars['String']['output'];
   isUserAnonymous: Scalars['Boolean']['output'];
+  mediaChannelId?: Maybe<Scalars['String']['output']>;
   messages: Array<ChatMessage>;
   programId: Scalars['String']['output'];
   updatedAtISO: Scalars['String']['output'];
@@ -134,6 +135,7 @@ export type Mutation = {
 
 
 export type MutationCreateProgramChatSessionArgs = {
+  mediaChannelId?: InputMaybe<Scalars['String']['input']>;
   programId: Scalars['String']['input'];
 };
 
@@ -141,14 +143,12 @@ export type MutationCreateProgramChatSessionArgs = {
 export type MutationFormulaCreateUberStoryArgs = {
   narratorKey: NarratorKey;
   scenes: Array<SceneInput>;
-  title: Scalars['String']['input'];
 };
 
 
 export type MutationFormulaCreateUberVideoArgs = {
   narratorKey: NarratorKey;
   scenes: Array<SceneInput>;
-  title: Scalars['String']['input'];
 };
 
 
@@ -208,14 +208,26 @@ export type PaginatedPodcastEpisodes = {
   total: Scalars['Int']['output'];
 };
 
+export type PaginationInput = {
+  limit?: Scalars['Int']['input'];
+  start: Scalars['Int']['input'];
+};
+
 export type Podcast = {
   __typename?: 'Podcast';
   description: Scalars['String']['output'];
   episodeList: PaginatedPodcastEpisodes;
   id: Scalars['String']['output'];
+  imageUrl?: Maybe<Scalars['String']['output']>;
+  mediaChannelType: ProgramMediaChannelType;
   rssUrl: Scalars['String']['output'];
   title: Scalars['String']['output'];
   url: Scalars['String']['output'];
+};
+
+
+export type PodcastEpisodeListArgs = {
+  pagination?: InputMaybe<PaginationInput>;
 };
 
 export type PodcastEpisode = {
@@ -248,17 +260,18 @@ export type PodcastEpisodePerson = {
 export type Program = {
   __typename?: 'Program';
   /** Blog, if empty no blog */
-  blogs: Blog;
+  blogs: Array<Blog>;
   /** Books, if empty no blog */
-  books: Book;
-  description?: Maybe<Scalars['String']['output']>;
+  books: Array<Book>;
   id: Scalars['String']['output'];
-  imageUrl: Scalars['String']['output'];
+  /** index segmentation by media type (optional). Used in vector search as some clients segment index namespace by media type */
+  mediaSegmentation?: Maybe<ProgramMediaChannelType>;
+  onboardedAtISO: Scalars['String']['output'];
   /** Podcast, if empty no podcast */
-  podcasts: Podcast;
-  rssUrl: Scalars['String']['output'];
+  podcasts: Array<Podcast>;
+  programKey: Scalars['String']['output'];
   title: Scalars['String']['output'];
-  url: Scalars['String']['output'];
+  updatedAtISO: Scalars['String']['output'];
 };
 
 /** Program media channel type */
@@ -326,7 +339,6 @@ export type Scene = {
   narrationId: Scalars['String']['output'];
   prompt: Scalars['String']['output'];
   script: Scalars['String']['output'];
-  title: Scalars['String']['output'];
 };
 
 export type SceneInput = {
