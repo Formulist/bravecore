@@ -3,26 +3,29 @@ import React from "react";
 import { Body } from "@/components/Body";
 import { ChatMessage } from "@/components/ChatMessage";
 import { Header } from "@/components/Header";
-import { SVG } from "@/components/SVG";
 import { useChat } from "@/hooks/useChat";
-import Image from "next/image";
 import styled from "styled-components";
 import { sizes } from "./styles/sizes";
 import { Spacer } from "@/components/Spacer";
-import { User } from "@/components/SVG/library/User";
 import { Agent2 } from "@/components/SVG/library/Agent2";
 import { Input } from "@/components/Input";
+import { usePageSession } from "@/hooks/usePageSession";
 
 export default function Home() {
   const [draft, setDraft] = React.useState("");
-  const { messages, sendChat } = useChat("65da766487105697f28888b9");
+  const { isLoading, sessionId, userId, createSession } = usePageSession();
+  const { messages, sendChat } = useChat(sessionId, userId);
 
   const handleMessage = () => {
     sendChat(draft);
     setDraft("");
   };
   return (
-    <Body Header={<Header />}>
+    <Body
+      Header={
+        <Header actions={[{ label: "New Chat", onClick: createSession }]} />
+      }
+    >
       <Content>
         <ChatBody>
           {messages.map((message, index) => {

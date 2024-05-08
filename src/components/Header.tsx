@@ -2,11 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { SVG } from "./SVG";
 import { sizes } from "@/app/styles/sizes";
+import { Button } from "./Button";
+import { Spacer } from "./Spacer";
 
-export const Header = () => {
+type Actions = {
+  label: string;
+  onClick: () => void;
+};
+
+export const Header = (props: { actions?: Actions[] }) => {
   return (
     <Container>
       <SVG iconKey={SVG.Keys.Logo} />
+      <Spacer width="fill" />
+      {props.actions?.map((action) => (
+        <Button key={action.label} onClick={action.onClick}>
+          {action.label}
+        </Button>
+      ))}
     </Container>
   );
 };

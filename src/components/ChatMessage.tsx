@@ -10,7 +10,7 @@ type Props = { value: string; type: string };
 export const ChatMessage = ({ value, type }: Props) => {
   return (
     <Container type={type}>
-      <Markdown>{value}</Markdown>
+      <span dangerouslySetInnerHTML={{ __html: value }} />
     </Container>
   );
 };

@@ -10,7 +10,8 @@ type State = {
   error: null | Error;
 };
 export const useChat = (
-  sessionId: string
+  sessionId: string,
+  userId: string
 ): State & {
   sendChat: (message: string) => Promise<void>;
 } => {
@@ -51,7 +52,7 @@ export const useChat = (
       });
       try {
         await gqlClient(SubmitMessageDocument, {
-          anonomousUserId: "6fdcfc8d-9cfc-413c-b767-741d72564af5",
+          anonomousUserId: userId,
           message,
           sessionId,
         });

@@ -1,5 +1,5 @@
 import { gqlClient } from "@/gql/client";
-import { useParams, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useImmer } from "use-immer";
 import { CreateChatSessionDocument } from "./CreateChatSession.generated";
@@ -15,6 +15,7 @@ export const usePageSession = (args?: {
   createSession: () => Promise<void>;
 } => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [state, dispatch] = useImmer<{
     sessionId: string;
     userId: string;
@@ -31,6 +32,7 @@ export const usePageSession = (args?: {
       programId: "65d526bd844fb8f01b974ea0",
     });
     const { id, createdById } = res.createProgramChatSession;
+    router.push(`/?session-id=${id}&user-id=${createdById}`);
     dispatch((draft) => {
       draft.sessionId = id;
       draft.userId = createdById;
